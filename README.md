@@ -1,16 +1,66 @@
-# React + Vite
+# JobTrack
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Simple frontend project to manage job applications in a dashboard.
 
-Currently, two official plugins are available:
+## 🎯 Purpose
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The project was built to practice a complete frontend flow:
+login screen + dashboard with create, edit, and delete of applications in-memory.
 
-## React Compiler
+## 🚀 Technologies
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- JavaScript
+- Vite
+- CSS Modules
 
-## Expanding the ESLint configuration
+## ✅ Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Login form with basic validation.
+- Dashboard with:
+  - list of applications
+  - create new application
+  - edit existing application
+  - delete application
+- Conditional rendering between login and dashboard.
+- Component-based structure in `src/pages`.
+- Local state management with `useState` and `useEffect`.
+
+## 🧱 Project structure
+
+- `src/main.jsx` - app bootstrap
+- `src/App.jsx` - global state and routing logic (login/dashboard)
+- `src/pages/Login.jsx` - login screen
+- `src/pages/Dashboard.jsx` - dashboard and application form
+- `src/pages/Login.module.css` - login styles
+- `src/pages/Dashboard.module.css` - dashboard styles
+
+## 🛠️ Run locally
+
+```bash
+# install dependencies
+npm install
+
+# start development server
+npm run dev
+```
+
+## 🗃️ Notes
+
+- Backend is not connected yet.
+- Data is currently stored in memory (React state) and resets on refresh.
+
+## 🎓 What I learned with this project
+
+- React component composition
+- State lifting and controlled forms
+- CRUD-style behavior in the frontend
+- Conditional rendering and dynamic lists
+- Styling with CSS Modules
+
+## 🔜 Next steps
+
+- Add backend (NestJS + MongoDB) with REST endpoints
+- Persist applications in database
+- Improve authentication flow
+- Add form validation improvements and user feedback
