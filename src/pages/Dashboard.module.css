@@ -1,0 +1,135 @@
+.container {
+  border: 1px solid #c4bdd3;
+  background: linear-gradient(160deg, #6f51ab 0%, #f5f2fb 100%);
+  padding: 24px;
+  width: min(92vw, 760px);
+  max-width: 760px;
+  margin: 24px auto;
+  border-radius: 14px;
+  box-shadow: 0 10px 22px rgba(50, 42, 78, 0.12);
+}
+
+.title {
+  color: #2f2740;
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.toolbar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.item {
+  background: #ffffff;
+  border: 1px solid #d8d0e9;
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.form {
+  margin-top: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.formCard {
+  margin-top: 16px;
+  padding: 18px;
+  border: 1px solid #d9d1e8;
+  border-radius: 12px;
+  background: #faf9fd;
+  box-shadow: 0 8px 16px rgba(49, 42, 84, 0.08);
+}
+
+.formTitle {
+  margin: 0 0 12px;
+  font-size: 18px;
+  color: #2f2740;
+}
+
+.formActions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.buttonPrimary {
+  background: #6f5cc0;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.buttonDanger {
+  background: #bf4f61;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.input {
+  background: #ffffff;
+  color: #2a2338;
+  border: 1px solid #c7bdd6;
+  border-radius: 10px;
+  padding: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.button {
+  background: #6f5cc0;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 4px;
+  width: auto;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.buttonSmall {
+  padding: 7px 12px;
+}
+
+.buttonDanger {
+  background: #bf4f61;
+}
+
+.button_top {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.itemActions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
