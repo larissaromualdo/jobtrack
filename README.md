@@ -63,6 +63,5 @@ const API_URL = 'http://localhost:3000/applications'
 DTO validation with class-validator
 Mongo schema with Mongoose enum/status constraints
 
- 🚀 Why this project
-This project demonstrates fullstack basics in practice:
+ 🚀 This project demonstrates fullstack basics in practice:
 React CRUD frontend, Node/NestJS API, MongoDB persistence, and HTTP integration between UI and backend.
