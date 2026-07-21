@@ -1,66 +1,85 @@
 # JobTrack
 
-Simple frontend project to manage job applications in a dashboard.
+JobTrack is a lightweight fullstack job application tracker built to organize job applications with a simple CRUD flow.
 
-## 🎯 Purpose
+## 🎯 Features
 
-The project was built to practice a complete frontend flow:
-login screen + dashboard with create, edit, and delete of applications in-memory.
+- Login screen (simple frontend validation)
+- Create, list, edit, and delete job applications
+- Application fields:
+  - Company
+  - Position
+  - Location
+  - Job type
+  - Status (`Applied`, `Interview`, `Rejected`, `Approved`)
+  - Application date
+  - Job link
+  - Notes
+- Frontend ↔ Backend integration via REST
+- MongoDB persistence with Mongoose
 
-## 🚀 Technologies
+## 🧱 Tech Stack
 
+### Frontend
 - React
-- JavaScript
 - Vite
+- JavaScript
 - CSS Modules
 
-## ✅ Features
+### Backend
+- NestJS
+- TypeScript
+- MongoDB
+- Mongoose
+- REST API
 
-- Login form with basic validation.
-- Dashboard with:
-  - list of applications
-  - create new application
-  - edit existing application
-  - delete application
-- Conditional rendering between login and dashboard.
-- Component-based structure in `src/pages`.
-- Local state management with `useState` and `useEffect`.
+## 📁 Project structure
 
-## 🧱 Project structure
+```text
+jobtrack/
+├── src/                  # React app
+│   ├── App.jsx
+│   └── ...
+├── jobtrack-backend/     # NestJS API
+│   ├── src/
+│   ├── test/
+│   └── package.json
+└── package.json
 
-- `src/main.jsx` - app bootstrap
-- `src/App.jsx` - global state and routing logic (login/dashboard)
-- `src/pages/Login.jsx` - login screen
-- `src/pages/Dashboard.jsx` - dashboard and application form
-- `src/pages/Login.module.css` - login styles
-- `src/pages/Dashboard.module.css` - dashboard styles
 
-## 🛠️ Run locally
-
-```bash
-# install dependencies
+Running the project
+1) Frontend
 npm install
-
-# start development server
 npm run dev
-```
+Starts on: http://localhost:5173
 
-## 🗃️ Notes
+2) Backend
+cd jobtrack-backend
+npm install
+npm run start:dev
+Starts on: http://localhost:3000 (default)
+Create .env in jobtrack-backend/.env:
+MONGODB_URI=mongodb://127.0.0.1:27017/jobtrack
+Make sure MongoDB is running locally.
 
-- Backend is not connected yet.
-- Data is currently stored in memory (React state) and resets on refresh.
+🌐 API Endpoints
+POST /applications → create application
+GET /applications → list all applications
+GET /applications/:id → get one
+PATCH /applications/:id → update one
+DELETE /applications/:id → delete one
+Frontend base URL used in src/App.jsx:
+const API_URL = 'http://localhost:3000/applications'
 
-## 🎓 What I learned with this project
+✅ Validation
+DTO validation with class-validator
+Mongo schema with Mongoose enum/status constraints
 
-- React component composition
-- State lifting and controlled forms
-- CRUD-style behavior in the frontend
-- Conditional rendering and dynamic lists
-- Styling with CSS Modules
-
-## 🔜 Next steps
-
-- Add backend (NestJS + MongoDB) with REST endpoints
-- Persist applications in database
-- Improve authentication flow
-- Add form validation improvements and user feedback
+🚀 Why this project
+This project demonstrates fullstack basics in practice:
+React CRUD frontend, Node/NestJS API, MongoDB persistence, and HTTP integration between UI and backend.
+🔭 Next steps
+Add real authentication (JWT)
+Add user ownership per profile
+Add filters and status analytics dashboard
+Deploy frontend + backend (Vercel + Render/Railway)
