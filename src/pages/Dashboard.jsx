@@ -11,9 +11,12 @@ function Dashboard({
   onCancel,
   showForm,
   editingApplication,
+  isLoading = false,
 }) {
   const [formData, setFormData] = useState({
     company: '',
+    position: '',
+    location: '',
     jobType: '',
     status: 'Applied',
     applicationDate: '',
@@ -28,6 +31,8 @@ function Dashboard({
     }
     setFormData({
       company: '',
+      position: '',
+      location: '',
       jobType: '',
       status: 'Applied',
       applicationDate: '',
@@ -84,6 +89,28 @@ function Dashboard({
                             value={formData.company}
                             onChange={handleChange}
                             placeholder='Company'
+                            required
+                        />
+
+                        <label htmlFor='position'>Position</label>
+                        <input
+                            className={styles.input}
+                            id='position'
+                            name='position'
+                            value={formData.position}
+                            onChange={handleChange}
+                            placeholder='Position'
+                            required
+                        />
+
+                        <label htmlFor='location'>Location</label>
+                        <input
+                            className={styles.input}
+                            id='location'
+                            name='location'
+                            value={formData.location}
+                            onChange={handleChange}
+                            placeholder='Location'
                             required
                         />
 
@@ -159,7 +186,7 @@ function Dashboard({
                 <ul className={styles.list}>
                     {applications.map((app) => (
                         <li className={styles.item} key={app.id}>
-                            <span>{app.company} - {app.status}</span>
+                            <span>{app.company} - {app.position} - {app.location} - {app.status}</span>
                             <div className={styles.itemActions}>
                                 <button
                                     className={`${styles.button} ${styles.buttonSmall}`}
@@ -178,6 +205,7 @@ function Dashboard({
                     ))}
                 </ul>
             )}
+            {isLoading && <p>Updating...</p>}
         </div>
     )
 

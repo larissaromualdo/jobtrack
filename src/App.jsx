@@ -1,6 +1,22 @@
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
+const API_URL = 'http://localhost:3000/applications'
+
+const toClientApplication = (app) => ({
+  id: app._id,
+  company: app.company || '',
+  position: app.position || '',
+  location: app.location || '',
+  jobType: app.jobType || '',
+  status: app.status || 'Applied',
+  applicationDate: app.applicationDate
+    ? app.applicationDate.slice(0, 10)
+    : '',
+  jobLink: app.jobLink || '',
+  notes: app.notes || '',
+})
 
 function App() {
 
@@ -8,37 +24,72 @@ function App() {
   const [applications, setApplications] = useState([])
   const [editingApplication, setEditingApplication] = useState(null)
   const [showForm, setShowForm] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
-    const handleAdd = (newApp) => {
-      setApplications((prev) => [
-        ...prev,
-        { ...newApp, id: crypto.randomUUID() },
-      ])
+    const loadApplications = async () => {
+      const response = await fetch(API_URL)
+      const data = await response.json()
+      setApplications(data.map(toClientApplication))
     }
 
-    const handleUpdate = (updateApp) => {
-      setApplications((prev) => 
-      prev.map((item) => (item.id === updateApp.id ? updateApp : item))
-    )
+    const handleAdd = async (newApp) => {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newApp),
+      })
+      const created = await response.json()
+      setApplications((prev) => [...prev, toClientApplication(created)])
     }
 
-    const handleDelete = (id) => {
-      setApplications((prev) =>prev.filter((item) => item.id !== id))
+    const handleUpdate = async (updateApp) => {
+      const response = await fetch(`${API_URL}/${updateApp.id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updateApp),
+      })
+      const updated = await response.json()
+      setApplications((prev) =>
+        prev.map((item) => (item.id === updated._id ? toClientApplication(updated) : item)),
+      )
     }
+
+    const handleDelete = async (id) => {
+      await fetch(`${API_URL}/${id}`, { method: 'DELETE' })
+      setApplications((prev) => prev.filter((item) => item.id !== id))
+    }
+
+    const handleSave = async (app) => {
+      setIsLoading(true)
+      try {
+        if (app.id) {
+          await handleUpdate(app)
+        } else {
+          await handleAdd(app)
+        }
+        setEditingApplication(null)
+        setShowForm(false)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+  useEffect(() => {
+    if (!loggedIn) return
+    const fetchData = async () => {
+      setIsLoading(true)
+      try {
+        await loadApplications()
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    fetchData()
+  }, [loggedIn])
 
     const handleEdit = (app) => {
       setEditingApplication(app)
       setShowForm(true)
-    }
-
-    const handleSave = (app) => {
-      if (app.id) {
-        handleUpdate(app) 
-      } else {
-        handleAdd(app)
-      }
-      setEditingApplication(null) 
-      setShowForm(false)
     }
 
     const handleNew = () => {
@@ -49,6 +100,19 @@ function App() {
     const handleCancelForm = () => {
       setEditingApplication(null)
       setShowForm(false)
+    }
+
+  const handleLogout = () => {
+    setLoggedIn(false)
+    setApplications([])
+    setEditingApplication(null)
+    setShowForm(false)
+  }
+
+  if (isLoading && applications.length === 0) {
+    return (
+      <div>Loading applications...</div>
+    )
     }
 
   if (!loggedIn) {
@@ -69,7 +133,8 @@ function App() {
   onDelete={handleDelete}
   onCancel={handleCancelForm}
   onEdit={handleEdit}
-  onLogout={() => setLoggedIn(false)}
+  onLogout={handleLogout}
+  isLoading={isLoading}
   />
   )
 }
