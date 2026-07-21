@@ -47,14 +47,14 @@ jobtrack/
 └── package.json
 
 
-### ** ▶️ Running the project **
+## 🎯 Running the project 
 
-## 1) Frontend
+1) Frontend
 npm install
 npm run dev
 Starts on: http://localhost:5173
 
-## 2) Backend
+2) Backend
 cd jobtrack-backend
 npm install
 npm run start:dev
@@ -63,7 +63,8 @@ Create .env in jobtrack-backend/.env:
 MONGODB_URI=mongodb://127.0.0.1:27017/jobtrack
 Make sure MongoDB is running locally.
 
-### 🌐 API Endpoints
+ ## 🌐 API Endpoints
+
 POST /applications → create application
 GET /applications → list all applications
 GET /applications/:id → get one
@@ -72,10 +73,10 @@ DELETE /applications/:id → delete one
 Frontend base URL used in src/App.jsx:
 const API_URL = 'http://localhost:3000/applications'
 
-## ✅ Validation
+ ✅ Validation
 DTO validation with class-validator
 Mongo schema with Mongoose enum/status constraints
 
-## 🚀 Why this project
+ 🚀 Why this project
 This project demonstrates fullstack basics in practice:
 React CRUD frontend, Node/NestJS API, MongoDB persistence, and HTTP integration between UI and backend.
