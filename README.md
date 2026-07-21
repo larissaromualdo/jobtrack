@@ -33,20 +33,6 @@ JobTrack is a lightweight fullstack job application tracker built to organize jo
 - Mongoose
 - REST API
 
-## 📁 Project structure
-
-```text
-jobtrack/
-├── src/                  # React app
-│   ├── App.jsx
-│   └── ...
-├── jobtrack-backend/     # NestJS API
-│   ├── src/
-│   ├── test/
-│   └── package.json
-└── package.json
-
-
 ## 🎯 Running the project 
 
 1) Frontend
